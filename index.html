@@ -1,22 +1,29 @@
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <title>Asteroids Program</title>
-
-    <!-- FIXED: Now using HTTPS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" 
+          rel="stylesheet" 
+          type="text/css">
 
     <link rel="stylesheet" href="styles.css">
     <script src="processing.js"></script>
 </head>
+
 <body>
     <header>
         <h1>Asteroids</h1>
     </header>
+
     <section id="content">
-        <canvas id="AsteroidsGame" data-processing-sources="MovingAsteroids.pde AsteroidsGame.pde Floater.pde Spaceship.pde Star.pde">
+        <canvas
+            id="AsteroidsGame"
+            data-processing-sources="MovingAsteroids.pde AsteroidsGame.pde Floater.pde Spaceship.pde Star.pde">
         </canvas>
     </section>
+
     <footer>
         Press/hold w to move forward<br>
         Press/hold a to turn counterclockwise<br>
