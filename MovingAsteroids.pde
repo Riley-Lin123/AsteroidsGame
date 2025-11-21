@@ -1,54 +1,41 @@
-class Asteroids extends Floater{
-  private double rotSpeed;
-  public Asteroids(){
-    corners = 8;
-    xCorners = new int[corners];
-    yCorners = new int[corners];
-    xCorners[0] = -11;
-    yCorners[0] = -3;
-    xCorners[1] = 2;
-    yCorners[1] = -7;
-    xCorners[2] = 5;
-    yCorners[2] = -6;
-    xCorners[3] = 7;
-    yCorners[3] = -5;
-    xCorners[4] = 13;
-    yCorners[4] = 0;
-    xCorners[5] = 2;
-    yCorners[5] = 10;
-    xCorners[6] = -9;
-    yCorners[6] = 5;
-    xCorners[7] = -7;
-    yCorners[7] = 0;
-    rotSpeed = Math.random()*15-7;
-    myColor = color(80,80,80);
-    myCenterX = Math.random()*1000;
-    myCenterY = Math.random()*1000;
-    myXspeed = Math.random()*10-5;
-    myYspeed = Math.random()*10-5;
-   
+class Asteroid extends Floater {
+  constructor() {
+    super();
+    this.rotSpeed = random(-7, 8);
+
+    this.corners = 8;
+    this.xCorners = [-11, 2, 5, 7, 13, 2, -9, -7];
+    this.yCorners = [-3, -7, -6, -5, 0, 10, 5, 0];
+
+    this.myColor = color(80, 80, 80);
+    this.myCenterX = random(0, 1000);
+    this.myCenterY = random(0, 1000);
+    this.myXspeed = random(-5, 5);
+    this.myYspeed = random(-5, 5);
   }
-  public void move(){
-    turn(rotSpeed);
+
+  move() {
+    this.turn(this.rotSpeed);
     super.move();
   }
-  public void show(){
+
+  show() {
     super.show();
   }
- 
-  public void setColor(int c){
-    myColor = c;
+
+  setColor(c) {
+    this.myColor = c;
   }
-  public int getColor(){
-    return myColor;
+
+  getColor() {
+    return this.myColor;
   }
-  public double getXcenter(){
-    return myCenterX;
+
+  getXcenter() {
+    return this.myCenterX;
   }
-  public double getYcenter(){
-    return myCenterY;
+
+  getYcenter() {
+    return this.myCenterY;
   }
- 
 }
-
-
