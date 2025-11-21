@@ -3,16 +3,23 @@ Star[] stars = new Star[100];
 boolean a = false;
 boolean x = false;
 boolean y = false;
+ArrayList <Asteroids> myList = new ArrayList <Asteroids>();
+Asteroids[] numOfAsteroids = new Asteroids[20];
+
 //your variable declarations here
-public void setup() 
+public void setup()
 {
   background(0);
   size(1000,1000);
   for (int i = 0; i < stars.length; i++){
     stars[i] = new Star();
   }
+  for (int i = 0; i < numOfAsteroids.length; i++){
+    numOfAsteroids[i] = new Asteroids();
+    myList.add(numOfAsteroids[i]);
+  }
 }
-public void draw() 
+public void draw()
 {
   background(0);
   for (int i = 0; i < stars.length; i++){
@@ -21,7 +28,7 @@ public void draw()
   fighter.move();
   if (x == true){
     fighter.turn(-8);
-    
+   
   }
   if (y == true){
     fighter.turn(8);
@@ -29,11 +36,20 @@ public void draw()
   }
   if (a == true){
     fighter.accelerate(0.15);
-    
+   
   }
   fighter.setXspeed(fighter.getXspeed()*0.99);
   fighter.setYspeed(fighter.getYspeed()*0.99);
   fighter.show();
+  for (int i = 0; i < myList.size(); i++){
+    myList.get(i).move();
+    myList.get(i).show();
+    if(myList.get(i).getXcenter() >= fighter.getXcenter()-15 && myList.get(i).getXcenter() <= fighter.getXcenter()+15 && myList.get(i).getYcenter() >= fighter.getYcenter()-15 && myList.get(i).getYcenter() <= fighter.getYcenter()+15){
+      myList.remove(i);
+      i--;
+    }
+  }
+ 
 }
 public void keyPressed(){
   if (key == 'w' || key == 'W'){
