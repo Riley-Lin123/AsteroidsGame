@@ -3,8 +3,10 @@ Star[] stars = new Star[100];
 boolean a = false;
 boolean x = false;
 boolean y = false;
+boolean canShoot = true;
 ArrayList <Asteroids> myList = new ArrayList <Asteroids>();
-Asteroids[] numOfAsteroids = new Asteroids[20];
+ArrayList <Bullet> bang = new ArrayList <Bullet>();
+
 
 //your variable declarations here
 public void setup()
@@ -14,10 +16,10 @@ public void setup()
   for (int i = 0; i < stars.length; i++){
     stars[i] = new Star();
   }
-  for (int i = 0; i < numOfAsteroids.length; i++){
-    numOfAsteroids[i] = new Asteroids();
-    myList.add(numOfAsteroids[i]);
+  for (int i = 0; i < 20; i++){
+    myList.add(new Asteroids());
   }
+  
 }
 public void draw()
 {
@@ -49,7 +51,28 @@ public void draw()
       i--;
     }
   }
- 
+  for (int i = 0; i < bang.size(); i++) {
+  bang.get(i).move();
+  bang.get(i).show();
+  if (bang.get(i).getXcenter() >= 1000 || bang.get(i).getYcenter() >= 1000 || bang.get(i).getXcenter() <= 0 || bang.get(i).getYcenter() <= 0){
+    bang.remove(i);
+    i--;
+    break;
+  }
+  for (int j = 0; j < myList.size(); j++) {
+    if(myList.get(j).getXcenter() >= bang.get(i).getXcenter()-15 &&
+       myList.get(j).getXcenter() <= bang.get(i).getXcenter()+15 &&
+       myList.get(j).getYcenter() >= bang.get(i).getYcenter()-15 &&
+       myList.get(j).getYcenter() <= bang.get(i).getYcenter()+15) {
+          myList.remove(j);
+          j--;
+          bang.remove(i);
+          i--;
+          break;
+    }  
+  }
+}
+
 }
 public void keyPressed(){
   if (key == 'w' || key == 'W'){
@@ -80,4 +103,17 @@ public void keyReleased(){
   if (key == 'd' || key == 'D'){
     y = false;
   }
+}
+
+void mousePressed() {
+  if (mouseButton == LEFT) {
+    if(canShoot == true){
+      bang.add(new Bullet(fighter));
+      canShoot = false;
+  }
+  }
+}
+
+void mouseReleased(){
+    canShoot = true;
 }
